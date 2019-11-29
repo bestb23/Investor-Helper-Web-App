@@ -1,0 +1,12 @@
+﻿@model InvestmentResult
+@{
+    ViewData["Title"] = "CalculateInvestment";
+}
+
+<h1>Investment Advice</h1>
+<p></p>
+@foreach (IndividualInvestmentResult individualInvestmentResult in Model.InvestmentResults)
+{
+    <p>Buy @individualInvestmentResult.NumSharesToBuy shares of @individualInvestmentResult.StockSymbol</p>
+    <p></p>
+}

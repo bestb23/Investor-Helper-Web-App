@@ -1,0 +1,50 @@
+﻿@model StockHoldingsVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Account Information Form</h1>
+
+<form method="post" asp-controller="Calculate" asp-action="Index">
+    <table>
+        <tr>
+            <td><label asp-for="NumOfStocks">Enter the number of stocks in your account: </label></td>
+            <td><input type="text" asp-for="NumOfStocks" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="ContributionAmount">Enter the amount of money you'll be contributing: </label></td>
+            <td><input type="text" asp-for="ContributionAmount" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+<form method="post" asp-controller="Calculate" asp-action="CalculateInvestment">
+    <input type="hidden" asp-for="NumOfStocks" value="@Model.NumOfStocks" />
+    <input type="hidden" asp-for="ContributionAmount" value="@Model.ContributionAmount" />
+    <table>
+        @for (int i = 0; i < Model.NumOfStocks; i++)
+        {
+            <tr>
+                <td><label asp-for="Holdings[i].StockSymbol">Enter stock symbol: </label></td>
+                <td><input type="text" asp-for="Holdings[i].StockSymbol" /></td>
+
+                <td><label asp-for="Holdings[i].StockPrice">Enter stock price: </label></td>
+                <td><input type="text" asp-for="Holdings[i].StockPrice" /></td>
+
+                <td><label asp-for="Holdings[i].StockHoldings">Enter stock holdings: </label></td>
+                <td><input type="text" asp-for="Holdings[i].StockHoldings" /></td>
+            </tr>
+            if (i == Model.NumOfStocks - 1)
+            {
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Calculate" /></td>
+                </tr>
+            }
+        }
+    </table>
+</form>
