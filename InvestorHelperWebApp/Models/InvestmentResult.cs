@@ -21,13 +21,13 @@ namespace InvestorHelperWebApp.Models
 
         private List<IndividualInvestmentResult> calculateInvestmentResults()
         {
-            List<IndividualInvestmentResult> investmentResults = new List<IndividualInvestmentResult>();
+            var investmentResults = new List<IndividualInvestmentResult>();
             maxHolding = findHighestStockHolding();
 
-            int initialStocksLength = stocks.Count;
+            var initialStocksLength = stocks.Count;
             for (int i = 0; i < initialStocksLength; i++)
             {
-                Stock smallestHolding = findLowestStock();
+                var smallestHolding = findLowestStock();
                 if (smallestHolding.StockPrice == 0) // find out why the last value gets reset and nulled but leaves holdings amount
                 {
                     return investmentResults;
